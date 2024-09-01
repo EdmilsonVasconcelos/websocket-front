@@ -144,7 +144,11 @@
       function sendMessage() {
         const name = document.getElementById("userName").value;
         const message = document.getElementById("message").value;
-        message.textContent = "";
+
+        if (!name || !message) {
+          alert("Please enter both your name and message.");
+          return;
+        }
 
         socket.emit("msgToServer", { sender: name, message: message });
         document.getElementById("message").value = "";
