@@ -121,8 +121,7 @@
             li.appendChild(senderSpan);
             li.appendChild(document.createTextNode(` : ${message.message}`));
 
-            const messagesList = document.getElementById("messages");
-            messagesList.insertBefore(li, messagesList.firstChild); // Adiciona no início da lista
+            document.getElementById("messages").appendChild(li); // Adiciona no final da lista
           });
         } catch (error) {
           console.error("Error fetching messages:", error);
