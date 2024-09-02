@@ -21,7 +21,6 @@ window.onload = async () => {
   try {
     const response = await fetch(`${endpoint}/chat`);
     const messages = await response.json();
-
     messages.forEach((message) => {
       const li = document.createElement("li");
 
@@ -35,6 +34,9 @@ window.onload = async () => {
 
       document.getElementById("messages").appendChild(li);
     });
+
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("content").style.display = "flex";
   } catch (error) {
     console.error("Error fetching messages:", error);
   }
@@ -52,7 +54,7 @@ socket.on("msgToClient", (message) => {
   li.appendChild(document.createTextNode(` : ${message.message}`));
 
   const messagesList = document.getElementById("messages");
-  messagesList.insertBefore(li, messagesList.firstChild);
+  messagesList.insertBefore(li, messagesList.firstChild); // Adiciona no início da lista
 });
 
 function sendMessage() {
