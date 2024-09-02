@@ -121,7 +121,8 @@
             li.appendChild(senderSpan);
             li.appendChild(document.createTextNode(` : ${message.message}`));
 
-            document.getElementById("messages").appendChild(li);
+            const messagesList = document.getElementById("messages");
+            messagesList.insertBefore(li, messagesList.firstChild); // Adiciona no início da lista
           });
         } catch (error) {
           console.error("Error fetching messages:", error);
@@ -138,13 +139,16 @@
 
         li.appendChild(senderSpan);
         li.appendChild(document.createTextNode(` : ${message.message}`));
-        document.getElementById("messages").appendChild(li);
+
+        const messagesList = document.getElementById("messages");
+        messagesList.insertBefore(li, messagesList.firstChild); // Adiciona no início da lista
       });
 
       function sendMessage() {
         const name = document.getElementById("userName").value;
         const message = document.getElementById("message").value;
 
+        // Validação dos campos de nome e mensagem
         if (!name || !message) {
           alert("Please enter both your name and message.");
           return;
